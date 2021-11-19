@@ -1,7 +1,9 @@
-//import './App.css';
+import './App.css';
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Weather from './components/Weather';
 import Nasa from './components/Nasa';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
@@ -23,10 +25,26 @@ function App() {
   })
 
   return (
-    <div>
-      <Weather lat={lat} lng={lng} />
-      <Nasa lat={lat} lng={lng} />
-    </div>
+    <Router>
+      <div className='container-sm'>
+        <ul className="nav justify-content-center">
+          <li className="nav-item">
+            <Link to="/" className="nav-link">Weather</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/satellite" className="nav-link">Satellite</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/events" className="nav-link">Events</Link>
+          </li>
+        </ul>
+        <Routes>
+          <Route path="/" element={<Weather lat={lat} lng={lng} />} />
+          <Route path="/satellite" element={<Nasa lat={lat} lng={lng} />} />
+        </Routes>
+      </div>
+
+    </Router>
   );
 }
 
