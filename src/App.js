@@ -1,28 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import Nasa from "./components/Nasa";
+import Ticketmaster from "./components/Ticketmaster";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Test branch c1
-        </p>
-        <p>
-          Gabrielle's branch
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Nasa lng="100.75" lat="1.5" />
+      <Ticketmaster lng='100.75' lat='1.5' />
+    </>
   );
 }
 
 export default App;
+
+// lng='100.75' lat='1.5'
