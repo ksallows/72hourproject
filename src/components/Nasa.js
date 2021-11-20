@@ -6,30 +6,32 @@ const Nasa = (props) => {
     let img = new Image();
     const fetchImage = async () => {
         await fetch(`https://api.nasa.gov/planetary/earth/imagery?dim=0.05&lon=${props.lng}&lat=${props.lat}&date=2014-02-01&api_key=xLBmSdVETcqUsOAY73zIXHUCrkUv1yxvFaRlLRjU`)
-            //404 await fetch(`https://api.nasa.gov/planetary/earth/imagery?dim=0.05&lon=-22&lat=-22&date=2014-02-01&api_key=xLBmSdVETcqUsOAY73zIXHUCrkUv1yxvFaRlLRjU`)
+            //404 fetch ::: await fetch(`https://api.nasa.gov/planetary/earth/imagery?dim=0.05&lon=-22&lat=-22&date=2014-02-01&api_key=xLBmSdVETcqUsOAY73zIXHUCrkUv1yxvFaRlLRjU`)
             .then((result) => {
                 if (result.status == '200') {
                     setSatImage(result.url);
                 }
                 else if (result.status == '404') {
                     fetchKitties();
-                    loadingOff('Sorry, we couldn\'t find satellite imagery of your location. Please have a cat instead:');
+                    loadingOff('Sorry, we couldn\'t find satellite imagery of your location. Please have a cat instead:', false);
                 }
             })
 
     }
 
     const setSatImage = (imagePath) => {
-        img.onload = (() => loadingOff('Satellite imagery of your location:'));
+        img.onload = (() => loadingOff('Satellite imagery of your location:', true));
         img.src = imagePath;
     }
 
-    const loadingOff = (message) => {
+    const loadingOff = (message, isSat) => {
         setMessage(message);
-        img.classList.add('sat-img');
-        img.id = 'sat-img';
+        if (isSat) {
+            img.classList.add('sat-img');
+            img.id = 'sat-img';
+            document.getElementById('image-container').appendChild(img)
+        }
         document.getElementById('load-container').style.display = 'none';
-        document.getElementById('image-container').appendChild(img)
     }
 
     const fetchKitties = () => {
