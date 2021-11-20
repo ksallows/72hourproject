@@ -17,7 +17,6 @@ function Weather(props) {
             humidity: ''
         }
     });
-    //why github??
     const [weatherIcon, setWeatherIcon] = useState('');
     const [unit, setUnit] = useState(true); // true = F false = C
     const key = 'eb6b6964864393c4d3a4e0ed1780ea85';

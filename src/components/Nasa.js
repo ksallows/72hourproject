@@ -2,22 +2,34 @@ import { useState, useEffect } from 'react';
 
 const Nasa = (props) => {
     const [image, setImage] = useState('');
-    const [message, setMessage] = useState('')
-
+    const [message, setMessage] = useState('');
+    let img = new Image();
     const fetchImage = async () => {
         await fetch(`https://api.nasa.gov/planetary/earth/imagery?dim=0.05&lon=${props.lng}&lat=${props.lat}&date=2014-02-01&api_key=xLBmSdVETcqUsOAY73zIXHUCrkUv1yxvFaRlLRjU`)
-            //SAMPLE 404 -> await fetch(`https://api.nasa.gov/planetary/earth/imagery?dim=0.05&lon=-22&lat=-22&date=2014-02-01&api_key=xLBmSdVETcqUsOAY73zIXHUCrkUv1yxvFaRlLRjU`)
+            //404 await fetch(`https://api.nasa.gov/planetary/earth/imagery?dim=0.05&lon=-22&lat=-22&date=2014-02-01&api_key=xLBmSdVETcqUsOAY73zIXHUCrkUv1yxvFaRlLRjU`)
             .then((result) => {
                 if (result.status == '200') {
-                    setImage(result.url);
-                    setMessage('Satellite imagery of your location:');
+                    setSatImage(result.url);
                 }
                 else if (result.status == '404') {
                     fetchKitties();
-                    setMessage('Sorry, we couldn\'t find satellite imagery of your location. Please have a cat instead.')
+                    loadingOff('Sorry, we couldn\'t find satellite imagery of your location. Please have a cat instead:');
                 }
             })
 
+    }
+
+    const setSatImage = (imagePath) => {
+        img.onload = (() => loadingOff('Satellite imagery of your location:'));
+        img.src = imagePath;
+    }
+
+    const loadingOff = (message) => {
+        setMessage(message);
+        img.classList.add('sat-img');
+        img.id = 'sat-img';
+        document.getElementById('load-container').style.display = 'none';
+        document.getElementById('image-container').appendChild(img)
     }
 
     const fetchKitties = () => {
@@ -34,7 +46,12 @@ const Nasa = (props) => {
         <>
             <h1>Sattelite Imagery</h1>
             <h5>{message}</h5>
-            <img className='sat-img' src={image} alt='' />
+            <div id='image-container'>
+                <img id='sat-img' className='sat-img' src={image} alt='' />
+            </div>
+            <div id='load-container'>
+                <div id='load' className="spinner-border text-light" role="status"></div>
+            </div>
         </>
     );
 };
