@@ -21,7 +21,7 @@ function Weather(props) {
     const [unit, setUnit] = useState(true); // true = F false = C
     const key = 'eb6b6964864393c4d3a4e0ed1780ea85';
     const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
-    const toggle = () => setUnit(unit => !unit);
+    const toggle = () => setUnit(!unit);
 
     let getWeather = async () => await fetch(`${baseURL}?lat=${props.lat}&lon=${props.lng}&appid=${key}&units=imperial`)
         .then(result => result.json())
@@ -44,8 +44,7 @@ function Weather(props) {
                     <p className="h3">{currentWeather.weather[0].description}</p>
                 </div>
                 <div className=''>
-                    <h2 className="display-4">
-                        {unit ? Math.round(currentWeather.main.temp) : Math.round((currentWeather.main.temp - 32) / 1.8)}°
+                    <h2 className="display-4">{unit ? Math.round(currentWeather.main.temp) : Math.round((currentWeather.main.temp - 32) / 1.8)}°
                     </h2>
                     <p className="h3">Temp</p>
                 </div>
@@ -62,7 +61,7 @@ function Weather(props) {
                     <p className="h3">High</p>
                 </div>
                 <div className=''>
-                    <h2 className="display-4">{unit ? Math.round(currentWeather.main.humidity) : Math.round((currentWeather.main.humidity - 32) / 1.8)}%</h2>
+                    <h2 className="display-4">{Math.round(currentWeather.main.humidity)}%</h2>
                     <p className="h3">Humidity</p>
                 </div>
             </div>
