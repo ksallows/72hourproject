@@ -5,8 +5,8 @@ import Ticketmaster from "./components/Ticketmaster";
 function App() {
   return (
     <>
-      <Nasa lng="100.75" lat="1.5" />
-      <Ticketmaster lng='100.75' lat='1.5' />
+      <Nasa lng="-85.860835" lat="39.985411" />
+      <Ticketmaster lng="-85.860835" lat="39.985411" />
     </>
   );
 }
