@@ -1,3 +1,4 @@
+import Ticketmaster from "./components/Ticketmaster";
 import './App.css';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -41,6 +42,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Weather lat={lat} lng={lng} />} />
           <Route path="/satellite" element={<Nasa lat={lat} lng={lng} />} />
+          <Route path="/events" element={<Ticketmaster lat={lat} lng={lng} />} />
         </Routes>
       </div>
 
