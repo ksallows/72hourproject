@@ -31,8 +31,8 @@ const TicketmasterDisplay = (props) => {
         let standardHour = ((Number(hour) + 11) % 12 + 1);
 
         return (
-          <div key={event.id}>
-            <h2>{event.name}</h2>
+          <div key={event.id} className="eventDiv">
+            <h3>{event.name}</h3>
             <img src={ratio43.url} alt={event.name} />
             <p>{event._embedded.venues[0].distance} miles away</p>
             <p>{month} {day}, {year}</p>
