@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Geohash from 'latlon-geohash';
+import TicketmasterDisplay from "./TicketmasterDisplay";
 
 const Ticketmaster = (props) => {
     const [ events, setEvents ] = useState([]);
@@ -10,16 +11,12 @@ const Ticketmaster = (props) => {
           `https://app.ticketmaster.com/discovery/v2/events.json?geoPoint=${geohash}&source=ticketmaster&apikey=QBf3zwmOoGSNeHwcCIZohtcQvRTCQLqb`
         )
         .then((res) => res.json())
-        .then((json) => console.log(json))
+        .then((json) => setEvents(json._embedded.events))
     }
-
-    useEffect(() => {
-        fetchEvents();
-    })
 
     return(
         <>
-        Ticketmaster
+        <TicketmasterDisplay events={events} fetchEvents={fetchEvents} />
         </>
     );
 };
