@@ -28,16 +28,17 @@ const TicketmasterDisplay = (props) => {
         day = day.slice(1);
       }
 
-      if (event.dates.start.noSpecificTime) {
-        time = 'No specific time'
-      } else {
-        if (event.dates.start.localTime !== null) time = event.dates.start.localTime.split(":");
-        console.log(event.dates.start.noSpecificTime);
-        console.log(time);
-        [hour, min] = time;
-        suffix = Number(hour) >= 12 ? "PM" : "AM";
-        standardHour = ((Number(hour) + 11) % 12) + 1;
-      }
+        if (event.dates.start.noSpecificTime === true) {
+          time = 'No specific time:'
+        } else if (event.dates.start.localTime === null) {
+          time = 'No specific time'
+        } else {
+          time = event.dates.start.localTime.split(":");
+          console.log(time);
+          [ hour, min ] = time;
+          suffix = Number(hour) >= 12 ? "PM" : "AM";
+          standardHour = ((Number(hour) + 11) % 12) + 1;
+        }
 
       console.log(event._embedded.venues[0].city.name, event._embedded.venues[0].name);
 
@@ -60,11 +61,12 @@ const TicketmasterDisplay = (props) => {
   useEffect(() => {
     props.setFetchApi(true);
     props.fetchEvents();
-
-    return () => {
-      props.setFetchApi(false);
-    }
-  }, [props.lng]);
+    
+      return () => {
+        props.setFetchApi(false);
+        props.setEvents([]);
+      }
+    }, [props.lng]);
 
   return (
     <>
