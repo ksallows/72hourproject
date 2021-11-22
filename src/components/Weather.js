@@ -6,7 +6,8 @@ function Weather(props) {
         weather: [
             {
                 main: '',
-                description: ''
+                description: '',
+                icon: '01d'
             }
         ],
         main: {
@@ -39,8 +40,9 @@ function Weather(props) {
         .then(result => result.json())
         .then(result => {
             setWeather(result);
-            document.getElementById('icon').classList.add('bi-' + icons[`i${result.weather[0].icon}`]);
-            console.log(icons[`i${result.weather[0].icon}`]);
+            console.log(currentWeather.weather[0].icon);
+            document.getElementById('icon').classList.add('bi-' + icons[`i${currentWeather.weather[0].icon}`]);
+
         })
 
     useEffect(() => {

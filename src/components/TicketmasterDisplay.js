@@ -8,25 +8,25 @@ let suffix;
 let standardHour;
 
 const TicketmasterDisplay = (props) => {
-    console.log(props.events);
+  console.log(props.events);
 
-    const eventMapper = () => {
-      return props.events.map((event) => {
-        let ratio43 = Object.values(event.images).find((ratio) => {
-          return ratio.ratio === "4_3";
-        });
+  const eventMapper = () => {
+    return props.events.map((event) => {
+      let ratio43 = Object.values(event.images).find((ratio) => {
+        return ratio.ratio === "4_3";
+      });
 
-        let date = event.dates.start.localDate.split('-');
-        let [ year, month, day ] = date;
+      let date = event.dates.start.localDate.split('-');
+      let [year, month, day] = date;
 
-        if (month.startsWith('0')) {
-            month = month.slice(1);
-        }
-        month = months[month - 1];
+      if (month.startsWith('0')) {
+        month = month.slice(1);
+      }
+      month = months[month - 1];
 
-        if (day.startsWith('0')) {
-            day = day.slice(1);
-        }
+      if (day.startsWith('0')) {
+        day = day.slice(1);
+      }
 
         if (event.dates.start.noSpecificTime === true) {
           time = 'No specific time:'
@@ -40,40 +40,40 @@ const TicketmasterDisplay = (props) => {
           standardHour = ((Number(hour) + 11) % 12) + 1;
         }
 
-        console.log(event._embedded.venues[0].city.name, event._embedded.venues[0].name);
+      console.log(event._embedded.venues[0].city.name, event._embedded.venues[0].name);
 
-        return (
-          <div key={event.id} className="eventDiv">
-            <h3>{event.name}</h3>
-            <img src={ratio43.url} alt={event.name} />
-            <p>{event._embedded.venues[0].distance} miles away</p>
-            {min === '00' ? <p>{month} {day}, {year} &nbsp; - &nbsp; {standardHour} {suffix}</p> : <p>{month} {day}, {year} &nbsp; - &nbsp; {standardHour}:{min} {suffix}</p>}
-            <p>{event._embedded.venues[0].name}</p>
-            <p>{event._embedded.venues[0].address.line1}, {event._embedded.venues[0].city.name}, {event._embedded.venues[0].state.name}</p>
-            <div id='buyTickets'>
-                <a href={event.url} target='_blank'>Buy Tickets</a>
-            </div>
+      return (
+        <div key={event.id} className="eventDiv">
+          <h3>{event.name}</h3>
+          <img src={ratio43.url} alt={event.name} />
+          <p>{event._embedded.venues[0].distance} miles away</p>
+          {min === '00' ? <p>{month} {day}, {year} &nbsp; - &nbsp; {standardHour} {suffix}</p> : <p>{month} {day}, {year} &nbsp; - &nbsp; {standardHour}:{min} {suffix}</p>}
+          <p>{event._embedded.venues[0].name}</p>
+          <p>{event._embedded.venues[0].address.line1}, {event._embedded.venues[0].city.name}, {event._embedded.venues[0].state.name}</p>
+          <div id='buyTickets'>
+            <a href={event.url} target='_blank'>Buy Tickets</a>
           </div>
-        );
-      });
-    };
+        </div>
+      );
+    });
+  };
 
-    useEffect(() => {
-      props.setFetchApi(true);
-      props.fetchEvents();
-
+  useEffect(() => {
+    props.setFetchApi(true);
+    props.fetchEvents();
+    
       return () => {
         props.setFetchApi(false);
         props.setEvents([]);
       }
     }, [props.lng]);
 
-    return(
-        <>
-        {eventMapper()}
-        <button id='loadMore'>Load More Events</button>
-        </>
-    );
+  return (
+    <>
+      {eventMapper()}
+      <button id='loadMore'>Load More Events</button>
+    </>
+  );
 };
 
 export default TicketmasterDisplay;
