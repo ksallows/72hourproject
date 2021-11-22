@@ -45,7 +45,6 @@ function App() {
           <Route path="/events" element={<Ticketmaster lat={lat} lng={lng} />} />
         </Routes>
       </div>
-
     </Router>
   );
 }
