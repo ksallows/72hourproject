@@ -96,6 +96,8 @@ h5 {color:#fff;text-align:center;margin:30px auto 30px !important;}
 /** Event Cards **/
 .eventDiv {
   max-width: 500px;
+  display: flex;
+  flex-direction: column;
   margin: 30px auto 10px auto;
   padding: 20px;
   background-color: #bc70ee;
@@ -107,7 +109,30 @@ h5 {color:#fff;text-align:center;margin:30px auto 30px !important;}
   font-size: 30px;
   text-align: center;
 }
+.eventDiv img {
+  margin-bottom: 10px;
+}
 
+#buyTickets {
+  text-align: center;
+}
+
+#buyTickets a {
+  text-decoration: none;
+  background-color:#3a3240;
+  color:#fff !important;
+  padding:10px;
+  border-radius:10px;
+  margin-right:10px !important;
+  width:150px;
+  text-align:center;
+  transition:background 0.25s;
+}
+
+#buyTickets a:hover {
+  background:#7b5197;
+}
+=======
 i {
   color:#fff !important;
   display:block;

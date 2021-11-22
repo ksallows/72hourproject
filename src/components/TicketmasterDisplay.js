@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-let time = ['12', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '10', '11', '12', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '10', '11']
+let time;
+let hour;
+let min;
+let suffix;
+let standardHour;
 
 const TicketmasterDisplay = (props) => {
     console.log(props.events);
@@ -25,33 +28,47 @@ const TicketmasterDisplay = (props) => {
             day = day.slice(1);
         }
 
-        let time = event.dates.start.localTime.split(':');
-        let [ hour, min ] = time;
-        let suffix = Number(hour) >= 12 ? 'PM' : 'AM';
-        let standardHour = ((Number(hour) + 11) % 12 + 1);
+        if (event.dates.start.noSpecificTime === true) {
+          time = 'No specific time:'
+        } else {
+          time = event.dates.start.localTime.split(":");
+          console.log(time);
+          [ hour, min ] = time;
+          suffix = Number(hour) >= 12 ? "PM" : "AM";
+          standardHour = ((Number(hour) + 11) % 12) + 1;
+        }
+
+        console.log(event._embedded.venues[0].city.name, event._embedded.venues[0].name);
 
         return (
           <div key={event.id} className="eventDiv">
             <h3>{event.name}</h3>
             <img src={ratio43.url} alt={event.name} />
             <p>{event._embedded.venues[0].distance} miles away</p>
-            <p>{month} {day}, {year}</p>
-            {min === '00' ? <p>{standardHour} {suffix}</p> : <p>{standardHour}:{min} {suffix}</p>}
+            {min === '00' ? <p>{month} {day}, {year} &nbsp; - &nbsp; {standardHour} {suffix}</p> : <p>{month} {day}, {year} &nbsp; - &nbsp; {standardHour}:{min} {suffix}</p>}
             <p>{event._embedded.venues[0].name}</p>
             <p>{event._embedded.venues[0].address.line1}, {event._embedded.venues[0].city.name}, {event._embedded.venues[0].state.name}</p>
-            <a href={event.url} target='_blank'>Buy Tickets</a>
+            <div id='buyTickets'>
+                <a href={event.url} target='_blank'>Buy Tickets</a>
+            </div>
           </div>
         );
       });
     };
 
     useEffect(() => {
+      props.setFetchApi(true);
       props.fetchEvents();
-    }, []);
+
+      return () => {
+        props.setFetchApi(false);
+      }
+    }, [props.lng]);
 
     return(
         <>
         {eventMapper()}
+        <button id='loadMore'>Load More Events</button>
         </>
     );
 };
