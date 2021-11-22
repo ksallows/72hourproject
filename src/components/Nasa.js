@@ -41,7 +41,10 @@ const Nasa = (props) => {
     }
 
     useEffect(() => {
-        if (props.lat !== '' && props.lng !== '') fetchImage();
+        if (props.lat !== '' && props.lng !== '') {
+            fetchImage();
+            console.log(props.pageNum);
+        }
     }, [props.lng])
 
     return (
