@@ -30,6 +30,8 @@ const TicketmasterDisplay = (props) => {
 
         if (event.dates.start.noSpecificTime === true) {
           time = 'No specific time:'
+        } else if (event.dates.start.localTime === null) {
+          time = 'No specific time'
         } else {
           time = event.dates.start.localTime.split(":");
           console.log(time);
@@ -62,6 +64,7 @@ const TicketmasterDisplay = (props) => {
 
       return () => {
         props.setFetchApi(false);
+        props.setEvents([]);
       }
     }, [props.lng]);
 
