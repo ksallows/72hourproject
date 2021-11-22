@@ -46,7 +46,6 @@ const Nasa = (props) => {
 
     return (
         <>
-            <h1>Sattelite Imagery</h1>
             <h5>{message}</h5>
             <div id='image-container'>
                 <img id='sat-img' className='sat-img' src={image} alt='' />
