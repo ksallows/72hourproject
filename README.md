@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# 72 Hour Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Utilizing team git, create a React application.
+- When your application first runs, it needs to grab and store your location. 
+- With the location, fire off GET requests to three (3) separate api’s.
 
-## Available Scripts
+NASA: https://api.nasa.gov/planetary/earth/imagery
 
-In the project directory, you can run:
+Open Weather: https://openweathermap.org/current (Links to an external site.)
 
-### `npm start`
+Ticketmaster: https://developer.ticketmaster.com/products-and-docs/apis/getting-started/ (Links to an external site.)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Based on your location, from the NASA Earth api grab a satellite image matching your location, the weather in your current location, and events nearest your location.
+- Additionally, add a button that toggles between Fahrenheit and Centigrade when pulling from the weather api.
+- Use Material UI, Reactstrap, or styled components to style out the project however your team decides. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Requirements:
 
-### `npm test`
+The application must pull data from the NASA, Open Weather, and Ticketmaster's API's and present it to the DOM
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Presentation:
 
-### `npm run build`
+Your team will present this project as a group on Tuesday, September 23rd. 
+ 
+## How to Proceed:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This is a great way to get to know your team, as well as decide how your work patterns will function. We encourage you to start this project with a plan. Think about what the application is asking for, and try to scaffold out a  Project Tree. Then some wireframes, and a Trello board. Trello is a tool teams of developers use to create tickets(things that need to get done)  and separate them into lists like Need To Do, In Progress,  and Done. Here's a sample of how a development team could implement a Trello Board (Links to an external site.).  This link takes you to a template. Before starting your project, create a board from this template and start scaffolding out the various tasks this project requires.  Taking the time to plan these steps out will help save headache in the future when your team begins to code! 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Note:  The Learning Team and Learning Gym will not be available to assist you during this project. Your team is your main source of assistance. The #peer-help channel in Slack is still available, but the Learning Team will not be commenting or assisting on posts pertaining to your 72 Hour Project. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ 
+## Project Submission:
+GitHub
 
-### `npm run eject`
+Project does not need to be deployed. Submit the link to the GitHub repository. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Finally, don’t lose sight of the 50,000 ft. view of why you are doing what you’re doing. You’re learning, it’s going to be messy, but that’s all a part of the fun.
