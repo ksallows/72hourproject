@@ -73,7 +73,7 @@ const TicketmasterDisplay = (props) => {
           venue = 'No venue specified';
         }
 
-        if (typeof event._embedded.venues[0].state.name !== 'undefined') {
+        if (typeof event._embedded.venues[0].state !== 'undefined') {
           state = event._embedded.venues[0].state.name;
         } else {
           state = '';
